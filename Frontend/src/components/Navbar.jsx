@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Download } from 'lucide-react';
 
 const navLinks = [
@@ -10,9 +10,34 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState('home');
+  const getInitialSection = () => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hashId = window.location.hash.replace('#', '');
+      const valid = ['home', 'projects', 'about', 'skills', 'contact'];
+      if (valid.includes(hashId)) return hashId;
+    }
+    return 'home';
+  };
+
+  const [activeSection, setActiveSection] = useState(getInitialSection);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isClickScrollingRef = useRef(false);
+  const clickTimeoutRef = useRef(null);
+
+  // Sync with URL hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hashId = window.location.hash.replace('#', '');
+      const valid = ['home', 'projects', 'about', 'skills', 'contact'];
+      if (valid.includes(hashId)) {
+        setActiveSection(hashId);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   // Deterministic scroll and scroll-spy handling
   useEffect(() => {
@@ -24,9 +49,8 @@ export default function Navbar() {
           const scrollY = window.scrollY;
           setIsScrolled(scrollY > 10);
 
-          // If at the very top
-          if (scrollY < 120) {
-            setActiveSection('home');
+          // If a click navigation is in progress, don't let scroll-spy interfere
+          if (isClickScrollingRef.current) {
             ticking = false;
             return;
           }
@@ -40,15 +64,16 @@ export default function Navbar() {
             return;
           }
 
-          // Scroll-spy: find section currently in view based on getBoundingClientRect
+          // Reference line for scroll-spy (just below fixed 80px navbar)
+          const spyLine = 180;
           const sections = ['home', 'projects', 'about', 'skills', 'contact'];
 
-          for (let i = sections.length - 1; i >= 0; i--) {
-            const el = document.getElementById(sections[i]);
+          for (const id of sections) {
+            const el = document.getElementById(id);
             if (el) {
               const rect = el.getBoundingClientRect();
-              if (rect.top <= 160) {
-                setActiveSection(sections[i]);
+              if (rect.top <= spyLine && rect.bottom > spyLine) {
+                setActiveSection(id);
                 break;
               }
             }
@@ -94,11 +119,18 @@ export default function Navbar() {
     setMobileMenuOpen(false);
 
     const targetId = href.replace('#', '');
+    setActiveSection(targetId);
+    window.history.pushState(null, '', href);
+
+    isClickScrollingRef.current = true;
+    if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
+    clickTimeoutRef.current = setTimeout(() => {
+      isClickScrollingRef.current = false;
+    }, 800);
+
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.history.pushState(null, '', href);
-      setActiveSection(targetId);
     }
   };
 

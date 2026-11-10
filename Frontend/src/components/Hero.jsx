@@ -20,10 +20,10 @@ export default function Hero() {
           </div>
 
           <h1
-            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.12] mb-5"
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] mt-4 mb-5"
             style={{ color: 'var(--color-text)' }}
           >
-            Hi, I'm <span style={{ color: 'var(--color-accent)' }}>Ayan Khan</span>.
+            Hi, I'm <br /> <span style={{ color: 'var(--color-accent)' }}>Ayan Khan</span>.
             <br />
             Full Stack Developer
           </h1>

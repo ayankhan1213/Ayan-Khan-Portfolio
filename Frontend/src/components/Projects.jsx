@@ -202,7 +202,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      style={{ scrollMarginTop: '5rem' }}
+      style={{ scrollMarginTop: '6rem' }}
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >
       {/* Clean Cohesive Header */}

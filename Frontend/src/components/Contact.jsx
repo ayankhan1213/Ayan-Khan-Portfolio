@@ -88,7 +88,7 @@ export default function Contact() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: Contact Info & Copy Email */}
         <div
-          className="lg:col-span-5 rounded-3xl p-8 sm:p-10 flex flex-col justify-between"
+          className="lg:col-span-5 rounded-3xl p-8 sm:p-10 flex flex-col"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
             border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
@@ -97,14 +97,14 @@ export default function Contact() {
         >
           <div>
             <h3
-              className="text-2xl font-bold tracking-tight mb-3"
+              className="text-2xl font-bold tracking-tight mb-2.5"
               style={{ color: 'var(--color-text)' }}
             >
               Contact Details
             </h3>
 
             <p
-              className="text-base leading-relaxed mb-8"
+              className="text-base leading-relaxed mb-6"
               style={{
                 color: 'color-mix(in srgb, var(--color-text) 70%, transparent)',
               }}
@@ -114,7 +114,7 @@ export default function Contact() {
 
             {/* Quick Email Copy Card */}
             <div
-              className="p-4 rounded-2xl flex items-center justify-between mb-6"
+              className="p-4 rounded-2xl flex items-center justify-between mb-4 transition-all duration-200"
               style={{
                 backgroundColor: 'var(--color-bg)',
                 border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
@@ -157,7 +157,14 @@ export default function Contact() {
               </button>
             </div>
 
-            <div className="flex items-center gap-3">
+            {/* Location Card (Matched Box Design) */}
+            <div
+              className="p-4 rounded-2xl flex items-center gap-3 mb-6 transition-all duration-200"
+              style={{
+                backgroundColor: 'var(--color-bg)',
+                border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
+              }}
+            >
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
@@ -181,9 +188,9 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Social Profiles (GitHub & LinkedIn only, Twitter removed) */}
+          {/* Social Profiles (GitHub & LinkedIn aligned side-by-side with diagonal hover) */}
           <div
-            className="pt-6 mt-8 border-t"
+            className="pt-6 border-t mt-auto"
             style={{
               borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
             }}
@@ -195,31 +202,15 @@ export default function Contact() {
               My Profiles
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="grid grid-cols-2 gap-3">
               <a
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit GitHub Profile"
-                className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
-                style={{
-                  backgroundColor: 'var(--color-bg)',
-                  color: 'var(--color-text)',
-                  border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--color-accent)';
-                  e.currentTarget.style.borderColor = 'var(--color-accent)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--color-text)';
-                  e.currentTarget.style.borderColor =
-                    'color-mix(in srgb, var(--color-text) 12%, transparent)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                className="group btn-diagonal-secondary flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold tracking-wide"
               >
-                <GithubIcon className="w-5 h-5" />
+                <GithubIcon className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
                 <span>GitHub</span>
               </a>
 
@@ -228,25 +219,9 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit LinkedIn Profile"
-                className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
-                style={{
-                  backgroundColor: 'var(--color-bg)',
-                  color: 'var(--color-text)',
-                  border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--color-accent)';
-                  e.currentTarget.style.borderColor = 'var(--color-accent)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--color-text)';
-                  e.currentTarget.style.borderColor =
-                    'color-mix(in srgb, var(--color-text) 12%, transparent)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                className="group btn-diagonal-secondary flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold tracking-wide"
               >
-                <LinkedinIcon className="w-5 h-5" />
+                <LinkedinIcon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
                 <span>LinkedIn</span>
               </a>
             </div>

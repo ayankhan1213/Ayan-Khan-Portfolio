@@ -24,15 +24,30 @@ export default function Navbar() {
           const scrollY = window.scrollY;
           setIsScrolled(scrollY > 10);
 
-          // Scroll-spy: find section currently in view
+          // If at the very top
+          if (scrollY < 120) {
+            setActiveSection('home');
+            ticking = false;
+            return;
+          }
+
+          // If reached bottom of document, activate contact
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight;
+          if (windowHeight + scrollY >= documentHeight - 100) {
+            setActiveSection('contact');
+            ticking = false;
+            return;
+          }
+
+          // Scroll-spy: find section currently in view based on getBoundingClientRect
           const sections = ['home', 'projects', 'about', 'skills', 'contact'];
-          const offset = 140; // Navbar height + breathing room
 
           for (let i = sections.length - 1; i >= 0; i--) {
             const el = document.getElementById(sections[i]);
             if (el) {
-              const top = el.offsetTop - offset;
-              if (scrollY >= top) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= 160) {
                 setActiveSection(sections[i]);
                 break;
               }
@@ -81,15 +96,7 @@ export default function Navbar() {
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      const topOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - topOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       window.history.pushState(null, '', href);
       setActiveSection(targetId);
     }

@@ -6,7 +6,7 @@ export default function Hero() {
     <section
       id="home"
       style={{ scrollMarginTop: '6rem' }}
-      className="relative pt-4 sm:pt-8 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
+      className="relative pt-4 sm:pt-8 pb-16 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto overflow-hidden"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         {/* Left: Headline & Bio */}
@@ -20,7 +20,7 @@ export default function Hero() {
           </div>
 
           <h1
-            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] mt-4 mb-5"
+            className="text-4xl sm:text-6xl lg:text-6xl font-bold tracking-tight leading-[1.08] mt-4 mb-5"
             style={{ color: 'var(--color-text)' }}
           >
             Hi, I'm <br /> <span style={{ color: 'var(--color-accent)' }}>Ayan Khan</span>.
@@ -41,45 +41,17 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
             <a
               href="#projects"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base tracking-wide transition-all duration-200"
-              style={{
-                backgroundColor: 'var(--color-text)',
-                color: 'var(--color-bg)',
-                boxShadow: '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = '0.85';
-                e.currentTarget.style.boxShadow = '0 4px 16px color-mix(in srgb, var(--color-text) 18%, transparent)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.opacity = '1';
-                e.currentTarget.style.boxShadow = '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)';
-              }}
+              className="group btn-diagonal-primary w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-base tracking-wide"
             >
               <span>See My Projects</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
 
             <a
               href="#contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base tracking-wide transition-all duration-200"
-              style={{
-                backgroundColor: 'transparent',
-                color: 'var(--color-text)',
-                border: '1.5px solid color-mix(in srgb, var(--color-text) 20%, transparent)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--color-accent)';
-                e.currentTarget.style.color = 'var(--color-accent)';
-                e.currentTarget.style.backgroundColor = 'color-mix(in srgb, var(--color-accent) 6%, transparent)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--color-text) 20%, transparent)';
-                e.currentTarget.style.color = 'var(--color-text)';
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}
+              className="group btn-diagonal-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-base tracking-wide"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
               <span>Contact Me</span>
             </a>
           </div>

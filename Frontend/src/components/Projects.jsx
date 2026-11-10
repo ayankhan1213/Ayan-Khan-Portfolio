@@ -357,53 +357,24 @@ export default function Projects() {
             </div>
 
             {/* Links */}
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
+            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3.5 justify-center">
               <a
                 href={featuredProject.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
-                style={{
-                  backgroundColor: 'var(--color-text)',
-                  color: 'var(--color-bg)',
-                  boxShadow: '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.opacity = '0.85';
-                  e.currentTarget.style.boxShadow = '0 4px 16px color-mix(in srgb, var(--color-text) 18%, transparent)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = '1';
-                  e.currentTarget.style.boxShadow = '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)';
-                }}
+                className="group btn-diagonal-primary inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide"
               >
                 <span>Live Demo</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </a>
 
               <a
                 href={featuredProject.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
-                style={{
-                  backgroundColor: 'transparent',
-                  color: 'var(--color-text)',
-                  border: '1.5px solid color-mix(in srgb, var(--color-text) 20%, transparent)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--color-accent)';
-                  e.currentTarget.style.color = 'var(--color-accent)';
-                  e.currentTarget.style.backgroundColor = 'color-mix(in srgb, var(--color-accent) 6%, transparent)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor =
-                    'color-mix(in srgb, var(--color-text) 20%, transparent)';
-                  e.currentTarget.style.color = 'var(--color-text)';
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }}
+                className="group btn-diagonal-secondary inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide"
               >
-                <GithubIcon className="w-4 h-4" />
+                <GithubIcon className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
                 <span>View Source Code</span>
               </a>
             </div>

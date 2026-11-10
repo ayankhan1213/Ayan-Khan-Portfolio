@@ -41,21 +41,19 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
             <a
               href="#projects"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 shadow-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base tracking-wide transition-all duration-200"
               style={{
                 backgroundColor: 'var(--color-text)',
                 color: 'var(--color-bg)',
+                boxShadow: '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--color-accent)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow =
-                  '0 12px 24px -6px color-mix(in srgb, var(--color-accent) 30%, transparent)';
+                e.currentTarget.style.opacity = '0.85';
+                e.currentTarget.style.boxShadow = '0 4px 16px color-mix(in srgb, var(--color-text) 18%, transparent)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--color-text)';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.boxShadow = '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)';
               }}
             >
               <span>See My Projects</span>
@@ -64,22 +62,21 @@ export default function Hero() {
 
             <a
               href="#contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all duration-300"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base tracking-wide transition-all duration-200"
               style={{
-                backgroundColor: 'color-mix(in srgb, var(--color-text) 4%, var(--color-bg))',
+                backgroundColor: 'transparent',
                 color: 'var(--color-text)',
-                border: '1px solid color-mix(in srgb, var(--color-text) 16%, transparent)',
+                border: '1.5px solid color-mix(in srgb, var(--color-text) 20%, transparent)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'var(--color-accent)';
                 e.currentTarget.style.color = 'var(--color-accent)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.backgroundColor = 'color-mix(in srgb, var(--color-accent) 6%, transparent)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor =
-                  'color-mix(in srgb, var(--color-text) 16%, transparent)';
+                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--color-text) 20%, transparent)';
                 e.currentTarget.style.color = 'var(--color-text)';
-                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.backgroundColor = 'transparent';
               }}
             >
               <Mail className="w-4 h-4" />

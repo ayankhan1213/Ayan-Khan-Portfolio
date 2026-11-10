@@ -77,7 +77,7 @@ const categories = [
 function ProjectCard({ project }) {
   return (
     <article
-      className="relative rounded-3xl p-7 sm:p-8 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="relative rounded-3xl p-7 sm:p-8 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
       style={{
         backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
         border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
@@ -268,7 +268,7 @@ export default function Projects() {
       {/* Flagship Project Card */}
       {showFlagship && (
         <div
-          className="relative rounded-3xl p-8 sm:p-10 mb-8 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+          className="relative rounded-3xl p-8 sm:p-10 mb-8 overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
             border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
@@ -362,18 +362,19 @@ export default function Projects() {
                 href={featuredProject.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
                 style={{
                   backgroundColor: 'var(--color-text)',
                   color: 'var(--color-bg)',
+                  boxShadow: '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-accent)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.opacity = '0.85';
+                  e.currentTarget.style.boxShadow = '0 4px 16px color-mix(in srgb, var(--color-text) 18%, transparent)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-text)';
-                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.opacity = '1';
+                  e.currentTarget.style.boxShadow = '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)';
                 }}
               >
                 <span>Live Demo</span>
@@ -384,22 +385,22 @@ export default function Projects() {
                 href={featuredProject.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
                 style={{
-                  backgroundColor: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+                  backgroundColor: 'transparent',
                   color: 'var(--color-text)',
-                  border: '1px solid color-mix(in srgb, var(--color-text) 15%, transparent)',
+                  border: '1.5px solid color-mix(in srgb, var(--color-text) 20%, transparent)',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = 'var(--color-accent)';
                   e.currentTarget.style.color = 'var(--color-accent)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.backgroundColor = 'color-mix(in srgb, var(--color-accent) 6%, transparent)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor =
-                    'color-mix(in srgb, var(--color-text) 15%, transparent)';
+                    'color-mix(in srgb, var(--color-text) 20%, transparent)';
                   e.currentTarget.style.color = 'var(--color-text)';
-                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
                 <GithubIcon className="w-4 h-4" />

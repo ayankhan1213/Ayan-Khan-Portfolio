@@ -436,18 +436,19 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 shadow-sm cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base tracking-wide transition-all duration-200 cursor-pointer"
                 style={{
                   backgroundColor: 'var(--color-text)',
                   color: 'var(--color-bg)',
+                  boxShadow: '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-accent)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.opacity = '0.85';
+                  e.currentTarget.style.boxShadow = '0 4px 16px color-mix(in srgb, var(--color-text) 18%, transparent)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-text)';
-                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.opacity = '1';
+                  e.currentTarget.style.boxShadow = '0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent)';
                 }}
               >
                 <Send className="w-4 h-4" />

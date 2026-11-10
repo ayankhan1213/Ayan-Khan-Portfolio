@@ -29,6 +29,19 @@ body {
   font-family: 'Google Sans', sans-serif !important;
 }
 
+/* Global cursor pointer for all interactive elements and cards */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+article,
+.cursor-pointer,
+.interactive-card {
+  cursor: pointer !important;
+}
+
 /* Custom scrollbar styled with the 3 variables */
 ::-webkit-scrollbar {
   width: 7px;

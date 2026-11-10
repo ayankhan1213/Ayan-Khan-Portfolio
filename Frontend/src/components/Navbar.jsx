@@ -168,19 +168,21 @@ export default function Navbar() {
           <a
             href="/Ayan_Khan_Resume.pdf"
             download="Ayan_Khan_Resume.pdf"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
             style={{
               backgroundColor: 'var(--color-accent)',
               color: 'var(--color-bg)',
+              boxShadow: '0 2px 8px color-mix(in srgb, var(--color-accent) 20%, transparent)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-1.5px)';
+              e.currentTarget.style.opacity = '0.88';
               e.currentTarget.style.boxShadow =
-                '0 8px 20px -4px color-mix(in srgb, var(--color-accent) 35%, transparent)';
+                '0 4px 16px color-mix(in srgb, var(--color-accent) 32%, transparent)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.boxShadow =
+                '0 2px 8px color-mix(in srgb, var(--color-accent) 20%, transparent)';
             }}
           >
             <Download className="w-4 h-4" />

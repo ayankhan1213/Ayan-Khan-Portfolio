@@ -14,9 +14,35 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Deterministic scroll and scroll-spy handling
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          setIsScrolled(scrollY > 10);
+
+          // Scroll-spy: find section currently in view
+          const sections = ['home', 'projects', 'about', 'skills', 'contact'];
+          const offset = 140; // Navbar height + breathing room
+
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const el = document.getElementById(sections[i]);
+            if (el) {
+              const top = el.offsetTop - offset;
+              if (scrollY >= top) {
+                setActiveSection(sections[i]);
+                break;
+              }
+            }
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -24,33 +50,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const sectionIds = ['home', 'projects', 'about', 'skills', 'contact'];
-    const sectionElements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    if (sectionElements.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '-25% 0px -65% 0px',
-        threshold: 0,
-      }
-    );
-
-    sectionElements.forEach((el) => observer.observe(el));
-    return () => sectionElements.forEach((el) => observer.unobserve(el));
-  }, []);
-
+  // Close mobile drawer on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && mobileMenuOpen) {
@@ -62,6 +62,7 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileMenuOpen]);
 
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -80,7 +81,15 @@ export default function Navbar() {
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const topOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - topOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+
       window.history.pushState(null, '', href);
       setActiveSection(targetId);
     }
@@ -88,13 +97,9 @@ export default function Navbar() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-200"
       style={{
-        backgroundColor: isScrolled
-          ? 'color-mix(in srgb, var(--color-bg) 92%, transparent)'
-          : 'var(--color-bg)',
-        backdropFilter: isScrolled ? 'blur(16px)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
+        backgroundColor: 'var(--color-bg)',
         borderBottom: isScrolled
           ? '1px solid color-mix(in srgb, var(--color-text) 10%, transparent)'
           : '1px solid transparent',
@@ -116,7 +121,7 @@ export default function Navbar() {
           style={{ color: 'var(--color-text)' }}
         >
           <span
-            className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm transition-all duration-300 group-hover:scale-105"
+            className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm transition-all duration-200 group-hover:scale-105"
             style={{
               backgroundColor: 'var(--color-text)',
               color: 'var(--color-bg)',
@@ -127,7 +132,7 @@ export default function Navbar() {
           <span className="font-bold tracking-tight">Ayan Khan</span>
         </a>
 
-        {/* Center: Desktop Nav Links (Normal, readable font size) */}
+        {/* Center: Desktop Nav Pills */}
         <div
           className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full"
           style={{
@@ -158,12 +163,12 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right: View Resume Download CTA */}
+        {/* Right: View Resume Button */}
         <div className="hidden md:flex items-center gap-3">
           <a
             href="/Ayan_Khan_Resume.pdf"
             download="Ayan_Khan_Resume.pdf"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-300"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
             style={{
               backgroundColor: 'var(--color-accent)',
               color: 'var(--color-bg)',
@@ -190,7 +195,7 @@ export default function Navbar() {
           aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-navigation"
-          className="md:hidden p-2.5 rounded-xl transition-all duration-200 flex items-center justify-center"
+          className="md:hidden p-2.5 rounded-xl transition-all duration-200 flex items-center justify-center cursor-pointer"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
             color: 'var(--color-text)',
@@ -201,17 +206,18 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Drawer (Fully responsive, clean, smooth) */}
+      {/* Mobile Drawer (100% Solid, Clean, Full Coverage) */}
       {mobileMenuOpen && (
         <div
           id="mobile-navigation"
-          className="md:hidden fixed inset-x-0 top-20 bottom-0 z-40 flex flex-col justify-between p-6 overflow-y-auto"
+          className="md:hidden fixed inset-x-0 top-20 bottom-0 z-50 flex flex-col justify-between p-6 overflow-y-auto"
           style={{
             backgroundColor: 'var(--color-bg)',
             borderTop: '1px solid color-mix(in srgb, var(--color-text) 10%, transparent)',
+            minHeight: 'calc(100vh - 5rem)',
           }}
         >
-          <div className="flex flex-col gap-2 pt-2">
+          <div className="flex flex-col gap-3 pt-2">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -219,11 +225,11 @@ export default function Navbar() {
                   key={link.id}
                   href={link.href}
                   onClick={(e) => handleNavLinkClick(e, link.href)}
-                  className="px-5 py-3.5 rounded-2xl text-lg font-bold transition-all duration-200 flex items-center justify-between"
+                  className="px-5 py-4 rounded-2xl text-lg font-bold transition-all duration-200 flex items-center justify-between"
                   style={{
                     backgroundColor: isActive
                       ? 'var(--color-text)'
-                      : 'color-mix(in srgb, var(--color-text) 4%, transparent)',
+                      : 'color-mix(in srgb, var(--color-text) 5%, transparent)',
                     color: isActive ? 'var(--color-bg)' : 'var(--color-text)',
                   }}
                 >

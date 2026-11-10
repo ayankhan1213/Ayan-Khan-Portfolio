@@ -205,32 +205,30 @@ export default function Projects() {
       style={{ scrollMarginTop: '5rem' }}
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >
-      {/* Section Header */}
+      {/* Clean Cohesive Header */}
       <div
-        className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b"
+        className="mb-10 pb-6 border-b"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
         }}
       >
-        <div>
-          <div
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2"
-            style={{ color: 'var(--color-accent)' }}
-          >
-            <FolderGit2 className="w-4 h-4" />
-            <span>My Work</span>
-          </div>
-
-          <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight"
-            style={{ color: 'var(--color-text)' }}
-          >
-            Projects I've Built
-          </h2>
+        <div
+          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2"
+          style={{ color: 'var(--color-accent)' }}
+        >
+          <FolderGit2 className="w-4 h-4" />
+          <span>My Work</span>
         </div>
 
+        <h2
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3"
+          style={{ color: 'var(--color-text)' }}
+        >
+          Projects I've Built
+        </h2>
+
         <p
-          className="text-sm sm:text-base max-w-md mt-3 md:mt-0"
+          className="text-base sm:text-lg max-w-2xl leading-relaxed"
           style={{
             color: 'color-mix(in srgb, var(--color-text) 65%, transparent)',
           }}

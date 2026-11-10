@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, MapPin, Send, CheckCircle, Copy, Check } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, TwitterIcon } from './Icons';
+import { GithubIcon, LinkedinIcon } from './Icons';
 
 export default function Contact() {
   const [formState, setFormState] = useState({
@@ -12,7 +12,9 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const emailAddress = 'contact@ayankhan.dev';
+  const emailAddress = 'ayanstack.dev@gmail.com';
+  const linkedinUrl = 'https://www.linkedin.com/in/ayan-khan-a6081239a';
+  const githubUrl = 'https://github.com/ayankhan1213';
 
   const copyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -41,39 +43,45 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      style={{ scrollMarginTop: '5rem' }}
+      style={{ scrollMarginTop: '6rem' }}
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >
+      {/* Clean Cohesive Section Header (No awkward split) */}
       <div
-        className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b"
+        className="mb-12 pb-6 border-b"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
         }}
       >
-        <div>
-          <div
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2"
-            style={{ color: 'var(--color-accent)' }}
-          >
-            <Mail className="w-4 h-4" />
-            <span>Get In Touch</span>
-          </div>
-
-          <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight"
-            style={{ color: 'var(--color-text)' }}
-          >
-            Let's Talk About Your Next Project
-          </h2>
+        <div
+          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2"
+          style={{ color: 'var(--color-accent)' }}
+        >
+          <Mail className="w-4 h-4" />
+          <span>Get In Touch</span>
         </div>
 
+        <h2
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3"
+          style={{ color: 'var(--color-text)' }}
+        >
+          Let's Talk About Your Next Project
+        </h2>
+
         <p
-          className="text-sm sm:text-base max-w-md mt-3 md:mt-0"
+          className="text-base sm:text-lg max-w-2xl leading-relaxed"
           style={{
             color: 'color-mix(in srgb, var(--color-text) 65%, transparent)',
           }}
         >
-          Have a question, a project idea, or an opportunity? Feel free to send a message or email me directly.
+          Have a question, a project idea, or an opportunity? Feel free to send a message or email me directly at{' '}
+          <a
+            href={`mailto:${emailAddress}`}
+            className="font-semibold underline underline-offset-4 transition-colors"
+            style={{ color: 'var(--color-accent)' }}
+          >
+            {emailAddress}
+          </a>.
         </p>
       </div>
 
@@ -96,7 +104,7 @@ export default function Contact() {
             </h3>
 
             <p
-              className="text-sm sm:text-base leading-relaxed mb-8"
+              className="text-base leading-relaxed mb-8"
               style={{
                 color: 'color-mix(in srgb, var(--color-text) 70%, transparent)',
               }}
@@ -173,7 +181,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Social Profiles */}
+          {/* Social Profiles (GitHub & LinkedIn only, Twitter removed) */}
           <div
             className="pt-6 mt-8 border-t"
             style={{
@@ -184,45 +192,63 @@ export default function Contact() {
               className="text-xs font-semibold uppercase tracking-wider mb-3"
               style={{ color: 'color-mix(in srgb, var(--color-text) 50%, transparent)' }}
             >
-              My Social Profiles
+              My Profiles
             </div>
 
             <div className="flex items-center gap-3">
-              {[
-                { icon: GithubIcon, label: 'GitHub', href: 'https://github.com' },
-                { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com' },
-                { icon: TwitterIcon, label: 'Twitter', href: 'https://twitter.com' },
-              ].map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <a
-                    key={idx}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit ${item.label}`}
-                    className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200"
-                    style={{
-                      backgroundColor: 'var(--color-bg)',
-                      color: 'var(--color-text)',
-                      border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = 'var(--color-accent)';
-                      e.currentTarget.style.borderColor = 'var(--color-accent)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.color = 'var(--color-text)';
-                      e.currentTarget.style.borderColor =
-                        'color-mix(in srgb, var(--color-text) 12%, transparent)';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                    }}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                );
-              })}
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit GitHub Profile"
+                className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
+                style={{
+                  backgroundColor: 'var(--color-bg)',
+                  color: 'var(--color-text)',
+                  border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--color-accent)';
+                  e.currentTarget.style.borderColor = 'var(--color-accent)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--color-text)';
+                  e.currentTarget.style.borderColor =
+                    'color-mix(in srgb, var(--color-text) 12%, transparent)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <GithubIcon className="w-5 h-5" />
+                <span>GitHub</span>
+              </a>
+
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit LinkedIn Profile"
+                className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
+                style={{
+                  backgroundColor: 'var(--color-bg)',
+                  color: 'var(--color-text)',
+                  border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--color-accent)';
+                  e.currentTarget.style.borderColor = 'var(--color-accent)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--color-text)';
+                  e.currentTarget.style.borderColor =
+                    'color-mix(in srgb, var(--color-text) 12%, transparent)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <LinkedinIcon className="w-5 h-5" />
+                <span>LinkedIn</span>
+              </a>
             </div>
           </div>
         </div>
@@ -403,7 +429,7 @@ export default function Contact() {
                   onBlur={(e) => {
                     e.currentTarget.style.borderColor =
                       'color-mix(in srgb, var(--color-text) 15%, transparent)';
-                    e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.boxShadow = 'none';
                   }}
                 />
               </div>

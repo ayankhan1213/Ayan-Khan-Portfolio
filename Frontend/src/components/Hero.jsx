@@ -1,15 +1,15 @@
 import { Mail, ArrowUpRight, Code, Sparkles, Layers, Zap } from 'lucide-react';
-import heroImage from '../assets/hero.png';
+import ayanPhoto from '../assets/AyanKhan.jpeg';
 
 export default function Hero() {
   return (
     <section
       id="home"
-      style={{ scrollMarginTop: '5rem' }}
+      style={{ scrollMarginTop: '6rem' }}
       className="relative pt-4 sm:pt-8 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-        {/* Left: Punchy Human Headline & Info */}
+        {/* Left: Headline & Bio */}
         <div className="lg:col-span-7 flex flex-col items-start">
           <div
             className="mb-4 inline-flex items-center gap-2 text-sm font-semibold tracking-wide"
@@ -20,10 +20,10 @@ export default function Hero() {
           </div>
 
           <h1
-            className="text-4xl sm:text-6xl lg:text-6xl font-bold tracking-tight leading-[1.12] mb-5"
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.12] mb-5"
             style={{ color: 'var(--color-text)' }}
           >
-            Hi, I'm <br /> <span style={{ color: 'var(--color-accent)' }}>Ayan Khan</span>.
+            Hi, I'm <span style={{ color: 'var(--color-accent)' }}>Ayan Khan</span>.
             <br />
             Full Stack Developer
           </h1>
@@ -37,7 +37,7 @@ export default function Hero() {
             I am a passionate fresher full-stack developer focused on building modern, responsive websites and web applications. Eager to learn, quick to adapt, and committed to writing clean, maintainable code.
           </p>
 
-          {/* Action Buttons (Standard readable font sizes) */}
+          {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
             <a
               href="#projects"
@@ -87,7 +87,7 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Fresher Strengths Strip (Aligned, Real, No fake years) */}
+          {/* Fresher Strengths Strip */}
           <div
             className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t w-full"
             style={{
@@ -144,34 +144,34 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: Perfectly Aligned Portrait Card */}
+        {/* Right: Ayan Khan's Real Photo Card */}
         <div className="lg:col-span-5 flex justify-center items-center">
           <div
-            className="relative w-full max-w-sm rounded-3xl p-6 transition-all duration-300"
+            className="relative w-full max-w-sm rounded-3xl p-5 transition-all duration-300"
             style={{
               backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
               border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
               boxShadow: '0 16px 36px -12px color-mix(in srgb, var(--color-text) 8%, transparent)',
             }}
           >
-            {/* Image Box */}
+            {/* Real Photo Box */}
             <div
-              className="w-full aspect-square rounded-2xl overflow-hidden flex items-center justify-center p-6 relative transition-transform duration-300 hover:scale-[1.02]"
+              className="w-full aspect-square rounded-2xl overflow-hidden flex items-center justify-center relative transition-transform duration-300 hover:scale-[1.02]"
               style={{
                 backgroundColor: 'var(--color-bg)',
                 border: '1px solid color-mix(in srgb, var(--color-text) 10%, transparent)',
               }}
             >
               <img
-                src={heroImage}
-                alt="Ayan Khan portrait"
-                className="w-full h-full object-contain select-none"
+                src={ayanPhoto}
+                alt="Ayan Khan"
+                className="w-full h-full object-cover select-none"
               />
             </div>
 
             {/* Simple Card Footer */}
             <div
-              className="mt-5 flex items-center justify-between pt-4 border-t text-sm font-medium"
+              className="mt-4 flex items-center justify-between pt-3 border-t text-sm font-medium"
               style={{
                 borderColor: 'color-mix(in srgb, var(--color-text) 8%, transparent)',
               }}

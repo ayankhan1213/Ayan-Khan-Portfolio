@@ -66,7 +66,7 @@ article,
 }
 
 /* ============================================================
-   Authentic Diagonal Hover Animations for Buttons
+   Authentic Diagonal Hover Animations for Buttons (Silky Smooth)
    ============================================================ */
 
 .btn-diagonal-primary {
@@ -77,25 +77,28 @@ article,
   color: var(--color-bg);
   border: 1px solid var(--color-text);
   box-shadow: 0 2px 8px color-mix(in srgb, var(--color-text) 10%, transparent);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .btn-diagonal-primary::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 150%;
-  height: 100%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background-color: var(--color-accent);
-  transform: skewX(-25deg) translateX(-125%);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: rotate(-35deg) translateY(-102%);
+  transition: transform 0.42s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
   z-index: -1;
   pointer-events: none;
 }
 
 .btn-diagonal-primary:hover::before {
-  transform: skewX(-25deg) translateX(-10%);
+  transform: rotate(-35deg) translateY(0);
 }
 
 .btn-diagonal-primary:hover {
@@ -111,19 +114,22 @@ article,
   color: var(--color-text);
   border: 1.5px solid color-mix(in srgb, var(--color-text) 20%, transparent);
   box-shadow: none;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .btn-diagonal-secondary::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 150%;
-  height: 100%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background-color: var(--color-text);
-  transform: skewX(-25deg) translateX(-125%);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: rotate(-35deg) translateY(-102%);
+  transition: transform 0.42s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
   z-index: -1;
   pointer-events: none;
 }
@@ -135,7 +141,7 @@ article,
 }
 
 .btn-diagonal-secondary:hover::before {
-  transform: skewX(-25deg) translateX(-10%);
+  transform: rotate(-35deg) translateY(0);
 }
 
 .btn-diagonal-accent {
@@ -146,19 +152,22 @@ article,
   color: var(--color-bg);
   border: 1px solid var(--color-accent);
   box-shadow: 0 2px 8px color-mix(in srgb, var(--color-accent) 20%, transparent);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .btn-diagonal-accent::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 150%;
-  height: 100%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background-color: var(--color-text);
-  transform: skewX(-25deg) translateX(-125%);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: rotate(-35deg) translateY(-102%);
+  transition: transform 0.42s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
   z-index: -1;
   pointer-events: none;
 }
@@ -169,7 +178,7 @@ article,
 }
 
 .btn-diagonal-accent:hover::before {
-  transform: skewX(-25deg) translateX(-10%);
+  transform: rotate(-35deg) translateY(0);
 }
 
 /* Custom scrollbar styled with the 3 variables */

@@ -2,60 +2,51 @@ import { useState, useEffect } from 'react';
 
 export default function Loader({ onComplete }) {
   const [progress, setProgress] = useState(0);
-  const [statusText, setStatusText] = useState('Initializing');
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    const startTime = performance.now();
-    const duration = 1200; // 1.2s authentic pace
+    // 50 steady steps of 20ms = 1000ms (1.0s silky smooth progression)
+    // No RAF state churn, no main thread blocking
+    let current = 0;
+    const interval = setInterval(() => {
+      current += 2;
+      if (current >= 100) {
+        current = 100;
+        setProgress(100);
+        clearInterval(interval);
 
-    const tick = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progressRatio = Math.min(elapsed / duration, 1);
-      
-      // Smooth exponential easing for natural feel
-      const easedPercent = Math.round(progressRatio * 100);
-      setProgress(easedPercent);
-
-      if (easedPercent < 40) {
-        setStatusText('Loading Assets');
-      } else if (easedPercent < 80) {
-        setStatusText('Building Experience');
-      } else {
-        setStatusText('Ready');
-      }
-
-      if (progressRatio < 1) {
-        requestAnimationFrame(tick);
-      } else {
+        // Smooth curtain exit
         setTimeout(() => {
           setIsExiting(true);
           setTimeout(() => {
             if (onComplete) onComplete();
-          }, 650); // Matches curtain slide duration
-        }, 150);
+          }, 550);
+        }, 120);
+      } else {
+        setProgress(current);
       }
-    };
+    }, 20);
 
-    const frameId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frameId);
+    return () => clearInterval(interval);
   }, [onComplete]);
 
   return (
     <aside
       aria-label="Loading portfolio"
       aria-live="polite"
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center select-none transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-        isExiting ? '-translate-y-full' : 'translate-y-0'
-      }`}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center select-none"
       style={{
         backgroundColor: 'var(--color-bg)',
+        transform: isExiting ? 'translate3d(0, -100%, 0)' : 'translate3d(0, 0, 0)',
+        opacity: isExiting ? 0 : 1,
+        transition: 'transform 0.55s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.5s ease',
+        willChange: 'transform, opacity',
       }}
     >
-      <div className="flex flex-col items-center max-w-sm w-full px-8 text-center">
-        {/* Monogram AK Badge with Pulse Indicator */}
+      <div className="flex flex-col items-center max-w-xs w-full px-6 text-center">
+        {/* Monogram AK Badge */}
         <div
-          className="w-16 h-16 rounded-2xl flex items-center justify-center font-bold text-xl mb-6 tracking-tight relative shadow-sm transition-transform duration-300"
+          className="w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-lg mb-5 shadow-sm tracking-tight relative"
           style={{
             backgroundColor: 'var(--color-text)',
             color: 'var(--color-bg)',
@@ -63,31 +54,27 @@ export default function Loader({ onComplete }) {
         >
           <span>AK</span>
           <span
-            className="absolute -top-1 -right-1 w-3 h-3 rounded-full animate-ping opacity-75"
-            style={{ backgroundColor: 'var(--color-accent)' }}
-          />
-          <span
-            className="absolute -top-1 -right-1 w-3 h-3 rounded-full"
+            className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full"
             style={{ backgroundColor: 'var(--color-accent)' }}
           />
         </div>
 
         {/* Developer Name & Title */}
         <h1
-          className="text-2xl sm:text-3xl font-bold tracking-tight mb-1"
+          className="text-2xl font-bold tracking-tight mb-1"
           style={{ color: 'var(--color-text)' }}
         >
           Ayan Khan
         </h1>
 
         <p
-          className="text-xs font-semibold uppercase tracking-widest mb-8"
+          className="text-xs font-semibold uppercase tracking-widest mb-7"
           style={{ color: 'var(--color-accent)' }}
         >
           Full Stack Developer
         </p>
 
-        {/* Dual-Stage Minimal Progress Bar */}
+        {/* GPU-Accelerated Progress Track (ScaleX instead of Width to eliminate reflow lag) */}
         <div
           className="w-full h-1.5 rounded-full overflow-hidden mb-3 relative"
           style={{
@@ -95,23 +82,24 @@ export default function Loader({ onComplete }) {
           }}
         >
           <div
-            className="h-full rounded-full transition-all duration-75 ease-out relative"
+            className="h-full w-full rounded-full origin-left"
             style={{
-              width: `${progress}%`,
               backgroundColor: 'var(--color-accent)',
-              boxShadow: '0 0 12px color-mix(in srgb, var(--color-accent) 60%, transparent)',
+              transform: `scaleX(${progress / 100})`,
+              transition: 'transform 0.06s linear',
+              willChange: 'transform',
             }}
           />
         </div>
 
-        {/* Progress Metric & Status */}
+        {/* Progress Metric */}
         <div
           className="flex items-center justify-between w-full text-xs font-mono font-medium tracking-wider"
           style={{
             color: 'color-mix(in srgb, var(--color-text) 50%, transparent)',
           }}
         >
-          <span>{statusText.toUpperCase()}</span>
+          <span>PORTFOLIO</span>
           <span>{progress < 10 ? `0${progress}` : progress}%</span>
         </div>
       </div>

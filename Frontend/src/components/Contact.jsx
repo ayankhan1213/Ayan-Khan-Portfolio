@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, MapPin, Send, CheckCircle, Copy, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
 export default function Contact() {
@@ -47,8 +48,11 @@ export default function Contact() {
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >
       {/* Clean Cohesive Section Header (No awkward split) */}
-      <div
-        data-aos="fade-up"
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="mb-12 pb-6 border-b"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
@@ -84,13 +88,15 @@ export default function Contact() {
             {emailAddress}
           </a>.
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: Contact Info & Copy Email */}
-        <div
-          data-aos="fade-up"
-          data-aos-delay="100"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 rounded-3xl p-8 sm:p-10 flex flex-col"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
@@ -229,12 +235,14 @@ export default function Contact() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right: Contact Form */}
-        <div
-          data-aos="fade-up"
-          data-aos-delay="200"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.5, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 rounded-3xl p-8 sm:p-10"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
@@ -423,7 +431,7 @@ export default function Contact() {
               </button>
             </form>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

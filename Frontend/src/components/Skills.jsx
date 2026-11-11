@@ -1,4 +1,5 @@
 import { Wrench, Layout, Server, Terminal } from 'lucide-react';
+import { motion } from 'framer-motion';
 import {
   Html5Logo,
   Css3Logo,
@@ -80,8 +81,11 @@ export default function Skills() {
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >
       {/* Clean Cohesive Section Header */}
-      <div
-        data-aos="fade-up"
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="mb-12 pb-6 border-b"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
@@ -110,17 +114,19 @@ export default function Skills() {
         >
           The programming languages, frameworks, and developer tools I use to build full-stack web applications.
         </p>
-      </div>
+      </motion.div>
 
       {/* 3 Balanced Category Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
         {skillGroups.map((group, index) => {
           const Icon = group.icon;
           return (
-            <div
+            <motion.div
               key={index}
-              data-aos="fade-up"
-              data-aos-delay={index * 150}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="rounded-3xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1"
               style={{
                 backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
@@ -209,7 +215,7 @@ export default function Skills() {
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>

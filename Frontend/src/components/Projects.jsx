@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { ExternalLink, FolderGit2, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { GithubIcon } from './Icons';
 
 const featuredProject = {
@@ -74,11 +75,13 @@ const categories = [
   { id: 'frontend', label: 'Frontend' },
 ];
 
-function ProjectCard({ project, delay = 0 }) {
+function ProjectCard({ project, index = 0 }) {
   return (
-    <article
-      data-aos="fade-up"
-      data-aos-delay={delay}
+    <motion.article
+      initial={{ opacity: 0, y: 22 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.45, delay: (index % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
       className="relative rounded-3xl p-7 sm:p-8 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
       style={{
         backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
@@ -187,7 +190,7 @@ function ProjectCard({ project, delay = 0 }) {
           </span>
         ))}
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -208,8 +211,11 @@ export default function Projects() {
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >
       {/* Clean Cohesive Header */}
-      <div
-        data-aos="fade-up"
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="mb-10 pb-6 border-b"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
@@ -238,10 +244,10 @@ export default function Projects() {
         >
           Here are some of the web applications and projects I have worked on, from full-stack websites to frontend tools.
         </p>
-      </div>
+      </motion.div>
 
       {/* Category Filter Pills (Comfortable readable text) */}
-      <div className="flex flex-wrap items-center gap-2.5 mb-8" data-aos="fade-up" data-aos-delay="100">
+      <div className="flex flex-wrap items-center gap-2.5 mb-8">
         {categories.map((cat) => {
           const isActive = activeCategory === cat.id;
           return (
@@ -270,9 +276,11 @@ export default function Projects() {
 
       {/* Flagship Project Card */}
       {showFlagship && (
-        <div
-          data-aos="fade-up"
-          data-aos-delay="150"
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className="relative rounded-3xl p-8 sm:p-10 mb-8 overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
@@ -384,13 +392,13 @@ export default function Projects() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* Grid of Other Projects */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {filteredProjects.map((proj, idx) => (
-          <ProjectCard key={proj.id} project={proj} delay={(idx % 3) * 100} />
+          <ProjectCard key={proj.id} project={proj} index={idx} />
         ))}
       </div>
     </section>

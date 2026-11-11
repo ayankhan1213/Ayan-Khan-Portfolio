@@ -81,6 +81,7 @@ export default function Skills() {
     >
       {/* Clean Cohesive Section Header */}
       <div
+        data-aos="fade-up"
         className="mb-12 pb-6 border-b"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
@@ -118,6 +119,8 @@ export default function Skills() {
           return (
             <div
               key={index}
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
               className="rounded-3xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1"
               style={{
                 backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',

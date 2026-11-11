@@ -10,7 +10,7 @@ export default function Hero() {
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         {/* Left: Headline & Bio */}
-        <div className="lg:col-span-7 flex flex-col items-start">
+        <div className="lg:col-span-7 flex flex-col items-start" data-aos="fade-up" data-aos-duration="700">
           <div
             className="mb-4 inline-flex items-center gap-2 text-sm font-semibold tracking-wide"
             style={{ color: 'var(--color-accent)' }}
@@ -38,7 +38,7 @@ export default function Hero() {
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
+          <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10" data-aos="fade-up" data-aos-delay="150">
             <a
               href="#projects"
               className="group btn-diagonal-primary w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-base tracking-wide"
@@ -58,6 +58,8 @@ export default function Hero() {
 
           {/* Fresher Strengths Strip */}
           <div
+            data-aos="fade-up"
+            data-aos-delay="250"
             className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t w-full"
             style={{
               borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
@@ -114,7 +116,7 @@ export default function Hero() {
         </div>
 
         {/* Right: Ayan Khan's Real Photo Card */}
-        <div className="lg:col-span-5 flex justify-center items-center">
+        <div className="lg:col-span-5 flex justify-center items-center" data-aos="fade-left" data-aos-delay="200">
           <div
             className="relative w-full max-w-sm rounded-3xl p-5 transition-all duration-300"
             style={{

@@ -30,6 +30,7 @@ export default function About() {
     >
       {/* Clean Cohesive Header */}
       <div
+        data-aos="fade-up"
         className="mb-12 pb-6 border-b"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
@@ -63,6 +64,8 @@ export default function About() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {/* Narrative Box */}
         <div
+          data-aos="fade-up"
+          data-aos-delay="100"
           className="lg:col-span-6 rounded-3xl p-8 sm:p-10 flex flex-col justify-between"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
@@ -112,6 +115,8 @@ export default function About() {
             return (
               <div
                 key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 120}
                 className="rounded-3xl p-7 flex items-start gap-5 transition-all duration-300 hover:translate-x-1"
                 style={{
                   backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',

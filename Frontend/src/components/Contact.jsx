@@ -48,6 +48,7 @@ export default function Contact() {
     >
       {/* Clean Cohesive Section Header (No awkward split) */}
       <div
+        data-aos="fade-up"
         className="mb-12 pb-6 border-b"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
@@ -88,6 +89,8 @@ export default function Contact() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: Contact Info & Copy Email */}
         <div
+          data-aos="fade-up"
+          data-aos-delay="100"
           className="lg:col-span-5 rounded-3xl p-8 sm:p-10 flex flex-col"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
@@ -230,6 +233,8 @@ export default function Contact() {
 
         {/* Right: Contact Form */}
         <div
+          data-aos="fade-up"
+          data-aos-delay="200"
           className="lg:col-span-7 rounded-3xl p-8 sm:p-10"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',

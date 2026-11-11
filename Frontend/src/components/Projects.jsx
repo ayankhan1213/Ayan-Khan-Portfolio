@@ -74,9 +74,11 @@ const categories = [
   { id: 'frontend', label: 'Frontend' },
 ];
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, delay = 0 }) {
   return (
     <article
+      data-aos="fade-up"
+      data-aos-delay={delay}
       className="relative rounded-3xl p-7 sm:p-8 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
       style={{
         backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
@@ -207,6 +209,7 @@ export default function Projects() {
     >
       {/* Clean Cohesive Header */}
       <div
+        data-aos="fade-up"
         className="mb-10 pb-6 border-b"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
@@ -238,7 +241,7 @@ export default function Projects() {
       </div>
 
       {/* Category Filter Pills (Comfortable readable text) */}
-      <div className="flex flex-wrap items-center gap-2.5 mb-8">
+      <div className="flex flex-wrap items-center gap-2.5 mb-8" data-aos="fade-up" data-aos-delay="100">
         {categories.map((cat) => {
           const isActive = activeCategory === cat.id;
           return (
@@ -268,6 +271,8 @@ export default function Projects() {
       {/* Flagship Project Card */}
       {showFlagship && (
         <div
+          data-aos="fade-up"
+          data-aos-delay="150"
           className="relative rounded-3xl p-8 sm:p-10 mb-8 overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
@@ -384,8 +389,8 @@ export default function Projects() {
 
       {/* Grid of Other Projects */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {filteredProjects.map((proj) => (
-          <ProjectCard key={proj.id} project={proj} />
+        {filteredProjects.map((proj, idx) => (
+          <ProjectCard key={proj.id} project={proj} delay={(idx % 3) * 100} />
         ))}
       </div>
     </section>

@@ -7,6 +7,7 @@ export default function Footer() {
 
   return (
     <footer
+      data-aos="fade-in"
       className="border-t py-10 px-4 sm:px-6 lg:px-8"
       style={{
         backgroundColor: 'color-mix(in srgb, var(--color-text) 2%, var(--color-bg))',

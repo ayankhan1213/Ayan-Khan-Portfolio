@@ -221,78 +221,98 @@ export default function Navbar() {
           aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-navigation"
-          className="md:hidden p-2.5 rounded-xl transition-all duration-200 flex items-center justify-center cursor-pointer"
+          className="md:hidden p-2.5 rounded-xl transition-all duration-200 flex items-center justify-center cursor-pointer active:scale-95"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
             color: 'var(--color-text)',
             border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
           }}
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <div className="relative w-6 h-6 flex items-center justify-center">
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6 transition-transform duration-300 rotate-90" />
+            ) : (
+              <Menu className="w-6 h-6 transition-transform duration-300" />
+            )}
+          </div>
         </button>
       </nav>
 
-      {/* Mobile Drawer (100% Solid, Clean, Full Coverage) */}
-      {mobileMenuOpen && (
+      {/* Mobile Backdrop Overlay (Subtle blur, closes on click) */}
+      <div
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+        className={`md:hidden fixed inset-0 top-20 z-40 transition-opacity duration-300 ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{
+          backgroundColor: 'color-mix(in srgb, var(--color-text) 25%, transparent)',
+          backdropFilter: 'blur(3px)',
+          WebkitBackdropFilter: 'blur(3px)',
+        }}
+      />
+
+      {/* Mobile Floating Dropdown Card (Compact & Smooth) */}
+      <div
+        id="mobile-navigation"
+        className={`md:hidden absolute top-full left-4 right-4 sm:left-auto sm:right-6 sm:w-80 mt-2 z-50 rounded-3xl p-4 transition-all duration-300 ease-out origin-top ${
+          mobileMenuOpen
+            ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
+            : 'opacity-0 -translate-y-4 scale-95 pointer-events-none'
+        }`}
+        style={{
+          backgroundColor: 'var(--color-bg)',
+          border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
+          boxShadow: '0 20px 48px -10px color-mix(in srgb, var(--color-text) 18%, transparent)',
+        }}
+      >
+        <div className="flex flex-col gap-1.5">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={(e) => handleNavLinkClick(e, link.href)}
+                className="px-4 py-3 rounded-2xl text-base font-bold transition-all duration-200 flex items-center justify-between"
+                style={{
+                  backgroundColor: isActive
+                    ? 'var(--color-text)'
+                    : 'transparent',
+                  color: isActive
+                    ? 'var(--color-bg)'
+                    : 'color-mix(in srgb, var(--color-text) 80%, transparent)',
+                }}
+              >
+                <span>{link.label}</span>
+                {isActive && (
+                  <span
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: 'var(--color-accent)' }}
+                  />
+                )}
+              </a>
+            );
+          })}
+        </div>
+
         <div
-          id="mobile-navigation"
-          className="md:hidden fixed inset-x-0 top-20 bottom-0 z-50 flex flex-col justify-between p-6 overflow-y-auto"
+          className="pt-3.5 border-t mt-3"
           style={{
-            backgroundColor: 'var(--color-bg)',
-            borderTop: '1px solid color-mix(in srgb, var(--color-text) 10%, transparent)',
-            minHeight: 'calc(100vh - 5rem)',
+            borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
           }}
         >
-          <div className="flex flex-col gap-3 pt-2">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  onClick={(e) => handleNavLinkClick(e, link.href)}
-                  className="px-5 py-4 rounded-2xl text-lg font-bold transition-all duration-200 flex items-center justify-between"
-                  style={{
-                    backgroundColor: isActive
-                      ? 'var(--color-text)'
-                      : 'color-mix(in srgb, var(--color-text) 5%, transparent)',
-                    color: isActive ? 'var(--color-bg)' : 'var(--color-text)',
-                  }}
-                >
-                  <span>{link.label}</span>
-                  {isActive && (
-                    <span
-                      className="w-2.5 h-2.5 rounded-full"
-                      style={{ backgroundColor: 'var(--color-accent)' }}
-                    />
-                  )}
-                </a>
-              );
-            })}
-          </div>
-
-          <div
-            className="pt-6 border-t mt-6 pb-6"
-            style={{
-              borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
-            }}
+          <a
+            href="/Ayan_Khan_Resume.pdf"
+            download="Ayan_Khan_Resume.pdf"
+            onClick={() => setMobileMenuOpen(false)}
+            className="group btn-diagonal-accent w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold tracking-wide"
           >
-            <a
-              href="/Ayan_Khan_Resume.pdf"
-              download="Ayan_Khan_Resume.pdf"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl text-base font-bold tracking-wide transition-all shadow-sm"
-              style={{
-                backgroundColor: 'var(--color-accent)',
-                color: 'var(--color-bg)',
-              }}
-            >
-              <Download className="w-5 h-5" />
-              <span>View Resume</span>
-            </a>
-          </div>
+            <Download className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+            <span>View Resume</span>
+          </a>
         </div>
-      )}
+      </div>
     </header>
   );
 }

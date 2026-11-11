@@ -130,7 +130,11 @@ export default function Navbar() {
 
     const element = document.getElementById(targetId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.__lenis) {
+        window.__lenis.scrollTo(element, { offset: -96, duration: 1.15 });
+      } else {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   };
 

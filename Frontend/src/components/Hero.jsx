@@ -3,6 +3,18 @@ import { motion } from 'framer-motion';
 import ayanPhoto from '../assets/AyanKhan.jpeg';
 
 export default function Hero() {
+  const handleScrollTo = (e, targetId) => {
+    e.preventDefault();
+    const el = document.getElementById(targetId);
+    if (el) {
+      if (window.__lenis) {
+        window.__lenis.scrollTo(el, { offset: -96, duration: 1.15 });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   return (
     <section
       id="home"
@@ -47,6 +59,7 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
             <a
               href="#projects"
+              onClick={(e) => handleScrollTo(e, 'projects')}
               className="group btn-diagonal-primary w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-base tracking-wide"
             >
               <span>See My Projects</span>
@@ -55,6 +68,7 @@ export default function Hero() {
 
             <a
               href="#contact"
+              onClick={(e) => handleScrollTo(e, 'contact')}
               className="group btn-diagonal-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-base tracking-wide"
             >
               <Mail className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />

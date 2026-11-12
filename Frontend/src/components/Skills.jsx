@@ -77,6 +77,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
+      aria-label="Skills and Technologies — React, Node.js, TypeScript and more"
       style={{ scrollMarginTop: '6rem' }}
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >

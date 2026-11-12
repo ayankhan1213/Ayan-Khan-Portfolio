@@ -207,6 +207,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
+      aria-label="Projects — Web Applications Built by Ayan Khan"
       style={{ scrollMarginTop: '6rem' }}
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >

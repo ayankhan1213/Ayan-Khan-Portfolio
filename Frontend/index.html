@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
 
@@ -15,11 +15,19 @@
     <meta name="author" content="Ayan Khan" />
     <meta
       name="keywords"
-      content="Ayan Khan, Full Stack Developer, React Developer, Node.js Developer, Portfolio, Web Developer Pakistan, Tailwind CSS, JavaScript, TypeScript, MongoDB"
+      content="Ayan Khan, Full Stack Developer, React Developer, Node.js Developer, Portfolio, Web Developer Pakistan, Tailwind CSS, JavaScript, TypeScript, MongoDB, Express.js, Next.js"
     />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="language" content="English" />
+    <meta name="rating" content="general" />
+    <meta name="geo.region" content="PK" />
+    <meta name="geo.country" content="Pakistan" />
+    <meta name="geo.placename" content="Pakistan" />
     <link rel="canonical" href="https://ayankhandev.vercel.app/" />
+    <link rel="alternate" hreflang="en" href="https://ayankhandev.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://ayankhandev.vercel.app/" />
 
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website" />
@@ -32,9 +40,9 @@
     <meta property="og:image" content="https://ayankhandev.vercel.app/og-preview.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Ayan Khan — Full-Stack Developer Portfolio" />
+    <meta property="og:image:alt" content="Ayan Khan — Full-Stack Developer Portfolio Preview" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="Ayan Khan Portfolio" />
+    <meta property="og:site_name" content="Ayan Khan — Portfolio" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -45,7 +53,7 @@
       content="Full-Stack Developer building modern web apps with React, Node.js & Tailwind CSS. Open to worldwide remote opportunities."
     />
     <meta name="twitter:image" content="https://ayankhandev.vercel.app/og-preview.png" />
-    <meta name="twitter:creator" content="@ayankhan" />
+    <meta name="twitter:image:alt" content="Ayan Khan Portfolio Preview" />
 
     <!-- Favicons -->
     <link rel="icon" href="./src/assets/favicon.ico" sizes="any" />
@@ -62,26 +70,75 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Structured Data — Person Schema (Google Rich Results) -->
+    <!-- Structured Data — Person + WebSite Schema (Google Rich Results) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Ayan Khan",
-      "url": "https://ayankhandev.vercel.app/",
-      "image": "https://ayankhandev.vercel.app/og-preview.png",
-      "jobTitle": "Full-Stack Developer",
-      "description": "Passionate Full-Stack Developer from Pakistan specializing in React, Node.js, and modern web technologies.",
-      "email": "ayanstack.dev@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "PK"
-      },
-      "sameAs": [
-        "https://github.com/ayankhan1213",
-        "https://www.linkedin.com/in/ayan-khan-a6081239a"
-      ],
-      "knowsAbout": ["React", "Node.js", "JavaScript", "TypeScript", "Tailwind CSS", "MongoDB", "Express.js", "Full-Stack Development"]
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://ayankhandev.vercel.app/#person",
+          "name": "Ayan Khan",
+          "url": "https://ayankhandev.vercel.app/",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://ayankhandev.vercel.app/og-preview.png",
+            "width": 1200,
+            "height": 630
+          },
+          "jobTitle": "Full-Stack Developer",
+          "description": "Passionate Full-Stack Developer from Pakistan specializing in React 19, Node.js, Express, MongoDB, and Tailwind CSS.",
+          "email": "ayanstack.dev@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "PK",
+            "addressLocality": "Pakistan"
+          },
+          "sameAs": [
+            "https://github.com/ayankhan1213",
+            "https://www.linkedin.com/in/ayan-khan-a6081239a"
+          ],
+          "knowsAbout": [
+            "React", "Next.js", "Node.js", "JavaScript", "TypeScript",
+            "Tailwind CSS", "MongoDB", "Express.js", "PostgreSQL",
+            "Full-Stack Web Development", "REST APIs"
+          ],
+          "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Pakistan"
+          },
+          "availableLanguage": "English",
+          "workLocation": {
+            "@type": "Place",
+            "name": "Remote (Worldwide)"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://ayankhandev.vercel.app/#website",
+          "url": "https://ayankhandev.vercel.app/",
+          "name": "Ayan Khan — Full-Stack Developer Portfolio",
+          "description": "Portfolio of Ayan Khan, a Full-Stack Developer from Pakistan.",
+          "author": { "@id": "https://ayankhandev.vercel.app/#person" },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://ayankhandev.vercel.app/#webpage",
+          "url": "https://ayankhandev.vercel.app/",
+          "name": "Ayan Khan — Full-Stack Developer | React, Node.js, Tailwind CSS",
+          "description": "Personal portfolio of Ayan Khan. Full-Stack Developer specializing in React, Node.js, and modern web technologies.",
+          "isPartOf": { "@id": "https://ayankhandev.vercel.app/#website" },
+          "about": { "@id": "https://ayankhandev.vercel.app/#person" },
+          "inLanguage": "en-US",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ayankhandev.vercel.app/" }
+            ]
+          }
+        }
+      ]
     }
     </script>
 
@@ -93,15 +150,36 @@
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           var theme = saved || (prefersDark ? 'dark' : 'light');
           document.documentElement.setAttribute('data-theme', theme);
-          if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-          }
+          if (theme === 'dark') document.documentElement.classList.add('dark');
         } catch(e) {}
       })();
     </script>
   </head>
 
   <body>
+    <!-- Noscript fallback for crawlers that don't execute JS -->
+    <noscript>
+      <div style="font-family:sans-serif;max-width:800px;margin:40px auto;padding:20px;line-height:1.6">
+        <h1>Ayan Khan — Full-Stack Developer</h1>
+        <p>I am a passionate full-stack developer from Pakistan, specializing in React 19, Node.js, Express, MongoDB, Tailwind CSS, and TypeScript. I build modern, responsive, and fast web applications.</p>
+        <h2>Projects</h2>
+        <ul>
+          <li>Full-Stack E-Commerce Store — React, Node.js, Express, MongoDB</li>
+          <li>Team Task &amp; Project Manager — React, WebSockets, Tailwind</li>
+          <li>Real-Time Chat Application — React, Socket.io, Node.js</li>
+          <li>Personal Blog Platform — Next.js, Markdown, Tailwind</li>
+          <li>Weather Forecast Tracker — React, REST API, Vite</li>
+        </ul>
+        <h2>Skills</h2>
+        <p>React 19, Next.js, Node.js, Express.js, TypeScript, JavaScript, Tailwind CSS, MongoDB, PostgreSQL, REST APIs, Git, Docker, VS Code</p>
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:ayanstack.dev@gmail.com">ayanstack.dev@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/ayankhan1213">github.com/ayankhan1213</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/ayan-khan-a6081239a">linkedin.com/in/ayan-khan-a6081239a</a></p>
+        <p>Location: Pakistan (Open to Worldwide Remote)</p>
+      </div>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -26,6 +26,7 @@ export default function About() {
   return (
     <section
       id="about"
+      aria-label="About Ayan Khan — Full-Stack Developer Journey"
       style={{ scrollMarginTop: '6rem' }}
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >

@@ -18,6 +18,7 @@ export default function Hero() {
   return (
     <section
       id="home"
+      aria-label="Hero — Ayan Khan, Full-Stack Developer"
       style={{ scrollMarginTop: '6rem' }}
       className="relative pt-4 sm:pt-8 pb-16 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto overflow-hidden"
     >
@@ -158,8 +159,11 @@ export default function Hero() {
             >
               <img
                 src={ayanPhoto}
-                alt="Ayan Khan"
+                alt="Ayan Khan — Full-Stack Developer from Pakistan, smiling in a black t-shirt"
                 className="w-full h-full object-cover select-none"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
               />
             </div>
 

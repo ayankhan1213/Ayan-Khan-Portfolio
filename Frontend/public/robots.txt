@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ayankhandev.vercel.app/sitemap.xml
+
+# Crawl-delay (optional, polite for bots)
+Crawl-delay: 10
+
+# Block access to build artifacts
+Disallow: /dist/
+Disallow: /.vite/

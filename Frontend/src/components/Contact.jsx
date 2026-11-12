@@ -44,6 +44,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
+      aria-label="Contact Ayan Khan — Get In Touch"
       style={{ scrollMarginTop: '6rem' }}
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >

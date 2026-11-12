@@ -97,7 +97,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 rounded-3xl p-8 sm:p-10 flex flex-col"
+          className="lg:col-span-5 rounded-3xl p-5 sm:p-8 lg:p-10 flex flex-col"
           style={{
             backgroundColor: 'color-mix(in srgb, var(--color-text) 3%, var(--color-bg))',
             border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
@@ -123,30 +123,34 @@ export default function Contact() {
 
             {/* Quick Email Copy Card */}
             <div
-              className="p-4 rounded-2xl flex items-center justify-between mb-4 transition-all duration-200"
+              className="p-3 sm:p-4 rounded-2xl flex items-center justify-between mb-3.5 sm:mb-4 gap-2 sm:gap-3 transition-all duration-200"
               style={{
                 backgroundColor: 'var(--color-bg)',
                 border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
               }}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{
                     backgroundColor: 'color-mix(in srgb, var(--color-accent) 12%, transparent)',
                     color: 'var(--color-accent)',
                   }}
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
-                <div>
+                <div className="min-w-0 flex-1">
                   <div
-                    className="text-xs font-medium"
+                    className="text-[11px] sm:text-xs font-medium uppercase tracking-wider"
                     style={{ color: 'color-mix(in srgb, var(--color-text) 50%, transparent)' }}
                   >
                     Email Me
                   </div>
-                  <div className="text-sm sm:text-base font-semibold" style={{ color: 'var(--color-text)' }}>
+                  <div
+                    className="text-xs sm:text-sm md:text-base font-semibold truncate select-all tracking-tight"
+                    title={emailAddress}
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     {emailAddress}
                   </div>
                 </div>
@@ -156,9 +160,11 @@ export default function Contact() {
                 type="button"
                 onClick={copyEmail}
                 aria-label="Copy email address"
-                className="p-2.5 rounded-xl transition-all duration-200 cursor-pointer"
+                className="flex-shrink-0 p-2 sm:p-2.5 rounded-xl transition-all duration-200 cursor-pointer"
                 style={{
-                  backgroundColor: 'color-mix(in srgb, var(--color-text) 6%, transparent)',
+                  backgroundColor: copied
+                    ? 'color-mix(in srgb, var(--color-accent) 15%, transparent)'
+                    : 'color-mix(in srgb, var(--color-text) 6%, transparent)',
                   color: copied ? 'var(--color-accent)' : 'var(--color-text)',
                 }}
               >
@@ -168,29 +174,32 @@ export default function Contact() {
 
             {/* Location Card (Matched Box Design) */}
             <div
-              className="p-4 rounded-2xl flex items-center gap-3 mb-6 transition-all duration-200"
+              className="p-3 sm:p-4 rounded-2xl flex items-center gap-2.5 sm:gap-3 mb-5 sm:mb-6 transition-all duration-200"
               style={{
                 backgroundColor: 'var(--color-bg)',
                 border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
               }}
             >
               <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
                   backgroundColor: 'color-mix(in srgb, var(--color-accent) 12%, transparent)',
                   color: 'var(--color-accent)',
                 }}
               >
-                <MapPin className="w-5 h-5" />
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <div
-                  className="text-xs font-medium"
+                  className="text-[11px] sm:text-xs font-medium uppercase tracking-wider"
                   style={{ color: 'color-mix(in srgb, var(--color-text) 50%, transparent)' }}
                 >
                   Location
                 </div>
-                <div className="text-sm sm:text-base font-semibold" style={{ color: 'var(--color-text)' }}>
+                <div
+                  className="text-xs sm:text-sm md:text-base font-semibold truncate"
+                  style={{ color: 'var(--color-text)' }}
+                >
                   Pakistan (Open to Worldwide Remote)
                 </div>
               </div>

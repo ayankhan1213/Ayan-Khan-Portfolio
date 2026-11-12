@@ -33,6 +33,23 @@
     />
     <meta name="author" content="Ayan Khan" />
 
+    <!-- Anti-flicker theme initialization -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('portfolio-theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Open Graph -->
     <meta property="og:title" content="Ayan Khan — Full-Stack Developer" />
     <meta

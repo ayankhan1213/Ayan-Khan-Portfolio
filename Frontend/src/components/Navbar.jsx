@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X, Download, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '#home', id: 'home' },
@@ -19,11 +19,38 @@ export default function Navbar() {
     return 'home';
   };
 
+  const getInitialTheme = () => {
+    if (typeof window === 'undefined') return 'light';
+    try {
+      const saved = localStorage.getItem('portfolio-theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
+  };
+
   const [activeSection, setActiveSection] = useState(getInitialSection);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(getInitialTheme);
   const isClickScrollingRef = useRef(false);
   const clickTimeoutRef = useRef(null);
+
+  // Apply theme to <html> and persist to localStorage
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      root.classList.add('dark');
+    } else {
+      root.setAttribute('data-theme', 'light');
+      root.classList.remove('dark');
+    }
+    try { localStorage.setItem('portfolio-theme', theme); } catch {}
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 
   // Sync with URL hash changes
   useEffect(() => {
@@ -206,8 +233,27 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right: View Resume Button */}
+        {/* Right: Theme Toggle + View Resume Button */}
         <div className="hidden md:flex items-center gap-3">
+          {/* Theme Toggle */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="p-2.5 rounded-xl transition-all duration-200 cursor-pointer active:scale-95"
+            style={{
+              backgroundColor: 'color-mix(in srgb, var(--color-text) 6%, transparent)',
+              color: 'var(--color-text)',
+              border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
+            }}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4.5 h-4.5" style={{ color: '#f59e0b' }} />
+            ) : (
+              <Moon className="w-4.5 h-4.5" />
+            )}
+          </button>
+
           <a
             href="/Ayan_Khan_Resume.pdf"
             download="Ayan_Khan_Resume.pdf"
@@ -218,28 +264,50 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Hamburger Toggle Button */}
-        <button
-          type="button"
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-          aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          aria-expanded={mobileMenuOpen}
-          aria-controls="mobile-navigation"
-          className="md:hidden p-2.5 rounded-xl transition-all duration-200 flex items-center justify-center cursor-pointer active:scale-95"
-          style={{
-            backgroundColor: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
-            color: 'var(--color-text)',
-            border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
-          }}
-        >
-          <div className="relative w-6 h-6 flex items-center justify-center">
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6 transition-transform duration-300 rotate-90" />
+        {/* Mobile: Theme Toggle + Hamburger */}
+        <div className="md:hidden flex items-center gap-2">
+          {/* Mobile Theme Toggle */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="p-2.5 rounded-xl transition-all duration-200 flex items-center justify-center cursor-pointer active:scale-95"
+            style={{
+              backgroundColor: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+              color: 'var(--color-text)',
+              border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
+            }}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-5 h-5" style={{ color: '#f59e0b' }} />
             ) : (
-              <Menu className="w-6 h-6 transition-transform duration-300" />
+              <Moon className="w-5 h-5" />
             )}
-          </div>
-        </button>
+          </button>
+
+          {/* Hamburger */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
+            className="p-2.5 rounded-xl transition-all duration-200 flex items-center justify-center cursor-pointer active:scale-95"
+            style={{
+              backgroundColor: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+              color: 'var(--color-text)',
+              border: '1px solid color-mix(in srgb, var(--color-text) 12%, transparent)',
+            }}
+          >
+            <div className="relative w-6 h-6 flex items-center justify-center">
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6 transition-transform duration-300 rotate-90" />
+              ) : (
+                <Menu className="w-6 h-6 transition-transform duration-300" />
+              )}
+            </div>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Backdrop Overlay (Subtle blur, closes on click) */}
@@ -301,11 +369,51 @@ export default function Navbar() {
         </div>
 
         <div
-          className="pt-3.5 border-t mt-3"
+          className="pt-3.5 border-t mt-3 flex flex-col gap-2.5"
           style={{
             borderColor: 'color-mix(in srgb, var(--color-text) 10%, transparent)',
           }}
         >
+          {/* Theme Toggle Row */}
+          <button
+            type="button"
+            onClick={() => { toggleTheme(); }}
+            className="w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-200 cursor-pointer"
+            style={{
+              backgroundColor: 'color-mix(in srgb, var(--color-text) 4%, transparent)',
+              color: 'var(--color-text)',
+            }}
+          >
+            <div className="flex items-center gap-2.5">
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4" style={{ color: '#f59e0b' }} />
+              ) : (
+                <Moon className="w-4 h-4" />
+              )}
+              <span className="text-sm font-semibold">
+                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+              </span>
+            </div>
+            {/* Toggle pill */}
+            <div
+              className="w-11 h-6 rounded-full relative transition-all duration-300 flex-shrink-0"
+              style={{
+                backgroundColor: theme === 'dark'
+                  ? 'var(--color-accent)'
+                  : 'color-mix(in srgb, var(--color-text) 20%, transparent)',
+              }}
+            >
+              <div
+                className="absolute top-0.5 w-5 h-5 rounded-full transition-all duration-300"
+                style={{
+                  backgroundColor: 'var(--color-bg)',
+                  left: theme === 'dark' ? '22px' : '2px',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.2)',
+                }}
+              />
+            </div>
+          </button>
+
           <a
             href="/Ayan_Khan_Resume.pdf"
             download="Ayan_Khan_Resume.pdf"

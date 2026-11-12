@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import Lenis from 'lenis';
+import { useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 
 import Loader from './components/Loader';
@@ -21,35 +20,6 @@ export default function App() {
     damping: 30,
     restDelta: 0.001,
   });
-
-  // Initialize Lenis Momentum Smooth Scroll
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 0.85,
-      easing: (t) => 1 - Math.pow(1 - t, 3),   // cubic ease-out — snappy, no lag
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1.1,
-      touchMultiplier: 1.8,
-      infinite: false,
-    });
-
-    window.__lenis = lenis;
-
-    let animationFrameId;
-    function raf(time) {
-      lenis.raf(time);
-      animationFrameId = requestAnimationFrame(raf);
-    }
-    animationFrameId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      lenis.destroy();
-      delete window.__lenis;
-    };
-  }, []);
 
   return (
     <>

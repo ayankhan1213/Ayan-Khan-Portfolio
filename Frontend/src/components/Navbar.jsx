@@ -156,13 +156,7 @@ export default function Navbar() {
     }, 800);
 
     const element = document.getElementById(targetId);
-    if (element) {
-      if (window.__lenis) {
-        window.__lenis.scrollTo(element, { offset: -96, duration: 1.15 });
-      } else {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (

@@ -16,29 +16,14 @@
   color-scheme: dark;
 }
 
+/* Native smooth scrolling */
 html {
+  scroll-behavior: smooth;
   scroll-padding-top: 6rem;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: 'Google Sans', sans-serif !important;
   transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Lenis smooth scrolling rules */
-html.lenis, html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
 }
 
 @media (min-width: 768px) {

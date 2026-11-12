@@ -6,13 +6,7 @@ export default function Hero() {
   const handleScrollTo = (e, targetId) => {
     e.preventDefault();
     const el = document.getElementById(targetId);
-    if (el) {
-      if (window.__lenis) {
-        window.__lenis.scrollTo(el, { offset: -96, duration: 1.15 });
-      } else {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (

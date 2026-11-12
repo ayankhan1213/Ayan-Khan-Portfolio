@@ -10,3 +10,4 @@ Crawl-delay: 10
 # Block access to build artifacts
 Disallow: /dist/
 Disallow: /.vite/
+

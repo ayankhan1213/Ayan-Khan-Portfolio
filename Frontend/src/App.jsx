@@ -25,13 +25,14 @@ export default function App() {
   // Initialize Lenis Momentum Smooth Scroll
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 0.85,
+      easing: (t) => 1 - Math.pow(1 - t, 3),   // cubic ease-out — snappy, no lag
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.1,
+      touchMultiplier: 1.8,
+      infinite: false,
     });
 
     window.__lenis = lenis;

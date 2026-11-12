@@ -43,7 +43,7 @@ html.lenis, html.lenis body {
 
 @media (min-width: 768px) {
   html {
-    zoom: 0.9;
+    font-size: 90%;
   }
 }
 

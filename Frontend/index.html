@@ -1,70 +1,104 @@
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
 
-    <!-- Favicon -->
-    <link rel="icon" href="./src/assets/favicon.ico" sizes="any" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./src/assets/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./src/assets/favicon-16x16.png"
-    />
-    <link rel="apple-touch-icon" href="./src/assets/apple-touch-icon.png" />
-    <link rel="manifest" href="./src/assets/site.webmanifest" />
-
-    <!-- Theme -->
-    <meta name="theme-color" content="#0A0A0A" />
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO -->
-    <title>Ayan Khan — Full-Stack Developer</title>
+    <!-- Primary SEO -->
+    <title>Ayan Khan — Full-Stack Developer | React, Node.js, Tailwind CSS</title>
     <meta
       name="description"
-      content="Personal portfolio of Ayan Khan. Full-Stack Developer building modern, clean, and responsive websites and web applications."
+      content="Ayan Khan is a passionate Full-Stack Developer from Pakistan specializing in React 19, Node.js, Express, MongoDB, and Tailwind CSS. Available for remote opportunities worldwide."
     />
     <meta name="author" content="Ayan Khan" />
+    <meta
+      name="keywords"
+      content="Ayan Khan, Full Stack Developer, React Developer, Node.js Developer, Portfolio, Web Developer Pakistan, Tailwind CSS, JavaScript, TypeScript, MongoDB"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://ayankhandev.vercel.app/" />
 
-    <!-- Anti-flicker theme initialization -->
-    <script>
-      (function() {
-        try {
-          const savedTheme = localStorage.getItem('portfolio-theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          const theme = savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light');
-          document.documentElement.setAttribute('data-theme', theme);
-          if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-        } catch (e) {}
-      })();
-    </script>
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Ayan Khan — Full-Stack Developer" />
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ayankhandev.vercel.app/" />
+    <meta property="og:title" content="Ayan Khan — Full-Stack Developer | React & Node.js" />
     <meta
       property="og:description"
-      content="Building clean, fast, and modern web applications."
+      content="Full-Stack Developer from Pakistan building modern, responsive web apps with React, Node.js, and Tailwind CSS. Open to worldwide remote work."
     />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ayankhandev.vercel.app/og-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ayan Khan — Full-Stack Developer Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Ayan Khan Portfolio" />
 
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://ayankhandev.vercel.app/" />
     <meta name="twitter:title" content="Ayan Khan — Full-Stack Developer" />
     <meta
       name="twitter:description"
-      content="Building clean, fast, and modern web applications."
+      content="Full-Stack Developer building modern web apps with React, Node.js & Tailwind CSS. Open to worldwide remote opportunities."
     />
+    <meta name="twitter:image" content="https://ayankhandev.vercel.app/og-preview.png" />
+    <meta name="twitter:creator" content="@ayankhan" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="./src/assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./src/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./src/assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="./src/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="./src/assets/site.webmanifest" />
+
+    <!-- Theme color (light/dark aware) -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0f19" media="(prefers-color-scheme: dark)" />
+
+    <!-- Performance: Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Structured Data — Person Schema (Google Rich Results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ayan Khan",
+      "url": "https://ayankhandev.vercel.app/",
+      "image": "https://ayankhandev.vercel.app/og-preview.png",
+      "jobTitle": "Full-Stack Developer",
+      "description": "Passionate Full-Stack Developer from Pakistan specializing in React, Node.js, and modern web technologies.",
+      "email": "ayanstack.dev@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PK"
+      },
+      "sameAs": [
+        "https://github.com/ayankhan1213",
+        "https://www.linkedin.com/in/ayan-khan-a6081239a"
+      ],
+      "knowsAbout": ["React", "Node.js", "JavaScript", "TypeScript", "Tailwind CSS", "MongoDB", "Express.js", "Full-Stack Development"]
+    }
+    </script>
+
+    <!-- Anti-flicker theme initialization (must be inline, before CSS) -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('portfolio-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch(e) {}
+      })();
+    </script>
   </head>
 
   <body>
